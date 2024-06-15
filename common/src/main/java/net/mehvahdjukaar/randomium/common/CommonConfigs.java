@@ -28,6 +28,7 @@ public class CommonConfigs {
     public static final Supplier<Double> FORTUNE_MULTIPLIER;
     public static final Supplier<Boolean> ALLOW_SILK_TOUCH;
     public static final Supplier<List<String>> MOD_BLACKLIST;
+    public static final Supplier<Boolean> DROP_DEV_ITEMS;
 
     public static final Supplier<Randomium.ListMode> LOOT_MODE;
 
@@ -53,6 +54,8 @@ public class CommonConfigs {
                 .define("silk_touch_multiplier", 0.5, 0, 1);
         builder.pop();
         builder.push("drops");
+        DROP_DEV_ITEMS = builder.comment("Allow the block to drop dev items (like command blocks). This still checks the whitelist/blacklist tags")
+                .define("drop_dev_items", false);
         MOD_BLACKLIST = builder.comment("A way to blacklist entire mods from the loot pool. Enter a list of mod ids")
                 .define("mod_blacklist", List.of("chisel"), o -> o instanceof String);
         LOOT_MODE = builder.comment("Loot mode: decides if it can drop everything except blacklist or only stuff on the whitelist")

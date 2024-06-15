@@ -1,1 +1,1 @@
-fixed an issue with REI
+added more configs

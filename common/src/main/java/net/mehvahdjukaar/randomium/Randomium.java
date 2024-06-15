@@ -169,10 +169,13 @@ public class Randomium {
         if (i.getItem() == Items.AIR) return false;
         if (i.is(BLACKLIST)) return false;
         if (i.getItem() instanceof SpawnEggItem) return false;
-        if (BuiltInRegistries.CREATIVE_MODE_TAB.get(CreativeModeTabs.OP_BLOCKS).contains(i)) return false;
+
         //should be covered by subsequent blacklist but better be sure
         ResourceLocation reg = Utils.getID(i.getItem());
         if (CommonConfigs.MOD_BLACKLIST.get().contains(reg.getNamespace())) return false;
+
+        if (CommonConfigs.DROP_DEV_ITEMS.get()) return true;
+        if (BuiltInRegistries.CREATIVE_MODE_TAB.get(CreativeModeTabs.OP_BLOCKS).contains(i)) return false;
         String name = reg.getPath();
         return !name.contains("creative") && !name.contains("debug")
                 && !name.contains("developer") && !name.contains("dev_") && !name.contains("_dev");
